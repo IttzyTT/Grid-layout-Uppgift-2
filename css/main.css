@@ -7,3 +7,225 @@ body {
   background: url(/img/12_col.gif) center top repeat-y;
   background-size: 90%;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "box1 box2 box2 box3"
+    "content content content sidebar"
+    "footer footer footer footer";
+  column-gap: 20px;
+  row-gap: 15px;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 10px;
+  height: 90vh;
+}
+
+.header,
+.box1,
+.box2,
+.box3,
+.content,
+.sidebar,
+footer,
+.footer1,
+.footer2,
+.footer3,
+.footer4 {
+  border: 2px solid black;
+}
+.header {
+  grid-area: header;
+}
+.box1 {
+  grid-area: box1;
+  justify-self: start;
+  width: 61%;
+}
+.box2 {
+  grid-area: box2;
+  justify-self: center;
+  width: 134%;
+}
+.box3 {
+  grid-area: box3;
+  justify-self: end;
+  width: 61%;
+}
+.content {
+  grid-area: content;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  padding: 5px;
+  grid-area: footer;
+  height: 150px;
+  column-gap: 20px;
+  height: auto;
+}
+
+.footer1,
+.footer2,
+.footer3,
+.footer4 {
+  margin: 5px 0;
+}
+
+/* Layouten skall anpassas efter olika enheter med brytpunkter för följande:
+1. Breda desktop skärmar: större än 1200px
+2. Mindre desktop skärmar: mellan 1200px och 960px
+3. Tablets såsom Ipad: mellan 960px och 768px
+4. Mobiltelefoner: mindre än 768px */
+
+/* -------------------------------------------------------------------- */
+/* Mindre desktop skärmar: mellan 1200px och 960px */
+@media only screen and (max-width: 1200px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "header header header"
+      "box1 box2 box3"
+      "content content sidebar"
+      "footer footer footer";
+    column-gap: 20px;
+    row-gap: 15px;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 10px;
+    height: 113vh;
+  }
+  [class*="box"] {
+    width: 100%;
+  }
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 5px;
+    grid-area: footer;
+    height: 150px;
+    column-gap: 20px;
+    height: auto;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Tablets såsom Ipad: mellan 960px och 768px */
+@media (max-width: 960px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "header header header"
+      "box1 box2 box3"
+      "content content sidebar"
+      "footer footer footer";
+    column-gap: 20px;
+    row-gap: 15px;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 10px;
+    height: 115vh;
+  }
+  .content {
+    justify-self: start;
+    width: 74%;
+  }
+  .sidebar {
+    justify-self: self-end;
+    width: 153%;
+  }
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 5px;
+    grid-area: footer;
+    column-gap: 20px;
+    row-gap: 10px;
+    grid-template-areas:
+      "footer1 footer2"
+      "footer3 footer4";
+    height: auto;
+  }
+
+  .footer1,
+  .footer2,
+  .footer3,
+  .footer4 {
+    margin: 5px 0;
+    height: 14rem;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Mobiltelefoner: mindre än 768px */
+@media (max-width: 768px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-areas:
+      "header"
+      "box1"
+      "box2"
+      "box3"
+      "content"
+      "sidebar"
+      "footer";
+    column-gap: 20px;
+    row-gap: 15px;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 10px;
+    height: 115vh;
+  }
+  .header,
+  .box1,
+  .box2,
+  .box3,
+  .content,
+  .sidebar,
+  footer {
+    justify-self: center;
+    width: 100%;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    padding: 5px;
+    grid-area: footer;
+    column-gap: 20px;
+    row-gap: 10px;
+    grid-template-areas:
+      "footer1"
+      "footer2"
+      "footer3"
+      "footer4";
+    height: auto;
+    margin-bottom: 20px;
+    width: 99%;
+  }
+  .footer1,
+  .footer2,
+  .footer3,
+  .footer4 {
+    height: 9rem;
+  }
+}
+}
